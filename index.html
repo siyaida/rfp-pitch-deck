@@ -257,7 +257,7 @@
     .btn-s { background: var(--card); border: 1px solid rgba(255,255,255,0.1); color: var(--t1); }
 
     /* ── Title slide center ── */
-    .title-slide { text-align: center !important; }
+    .title-slide { text-align: center !important; justify-content: center !important; }
     .title-slide h1 { font-size: 2.6em; margin-bottom: 4px; }
     .tagline { font-size: 0.7em; color: var(--t2); font-weight: 400; margin-bottom: 12px; }
     .title-badge {
@@ -269,7 +269,7 @@
     }
 
     /* ── CTA slide center ── */
-    .cta-slide { text-align: center !important; }
+    .cta-slide { text-align: center !important; justify-content: center !important; }
     .cta-slide h2 { font-size: 1.8em; }
 
     /* ── Decorative orbs ── */
@@ -319,11 +319,11 @@
 
     <div class="sg" style="max-width:680px; margin:0 auto; grid-template-columns:repeat(4,1fr)">
       <div class="sb">
-        <div class="sn gt">5</div>
+        <div class="sn gt">13</div>
         <div class="slb">AI Agents</div>
       </div>
       <div class="sb">
-        <div class="sn gt">520+</div>
+        <div class="sn gt">515+</div>
         <div class="slb">Source Files</div>
       </div>
       <div class="sb">
@@ -336,7 +336,7 @@
       </div>
     </div>
 
-    <aside class="notes">Open with scale — 5 autonomous AI agents, 520+ production files, bilingual enterprise platform. This is not a prototype.</aside>
+    <aside class="notes">Open with scale — 13 autonomous AI agents in 5 capabilities, 515+ production files, bilingual enterprise platform. This is not a prototype.</aside>
   </section>
 
   <!-- ═══ 2. PROBLEM ═══ -->
@@ -396,7 +396,7 @@
     <div class="tw" style="margin-top:14px">
       <div>
         <ul>
-          <li class="fragment"><strong style="color:var(--t1)">Instant RFP parsing</strong> — PDF, DOCX, TXT analyzed in seconds</li>
+          <li class="fragment"><strong style="color:var(--t1)">Instant RFP parsing</strong> — PDF, DOCX, Excel, TXT analyzed in seconds</li>
           <li class="fragment"><strong style="color:var(--t1)">Knowledge-powered answers</strong> — RAG on company docs to draft responses</li>
           <li class="fragment"><strong style="color:var(--t1)">Real-time collaboration</strong> — WebSocket live editing + notifications</li>
         </ul>
@@ -417,26 +417,17 @@
   <section>
     <div class="orb orb-p"></div>
     <span class="sl">AI Agents</span>
-    <h2>Five <span class="gt">AI Agents</span>, Two LLM Engines</h2>
-    <h3>GPT-5.2 powers reasoning & generation. QWEN 3.5 delivers native Arabic language understanding.</h3>
+    <h2><span class="gt">13 AI Agents</span>, 5 Capabilities</h2>
+    <h3>GPT-5.2 for reasoning + QWEN 3.5 for native Arabic — orchestrated across the full RFP lifecycle.</h3>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-top:10px">
       <div class="ac bb fragment">
         <div class="ai" style="background:rgba(59,130,246,0.1)">
           <i data-lucide="scan-search" style="width:18px;height:18px;color:var(--blue)"></i>
         </div>
         <div>
-          <h4>RFP Analyzer Agent <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2 + QWEN 3.5]</span></h4>
-          <p>Extracts requirements, deadlines, and criteria from Arabic or English RFPs with native language comprehension.</p>
-        </div>
-      </div>
-      <div class="ac be fragment">
-        <div class="ai" style="background:rgba(16,185,129,0.1)">
-          <i data-lucide="file-text" style="width:18px;height:18px;color:var(--emerald)"></i>
-        </div>
-        <div>
-          <h4>Proposal Generator Agent <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2]</span></h4>
-          <p>Creates professional proposals by aggregating team inputs with company knowledge base context.</p>
+          <h4>Intelligent RFP Analysis <span style="font-size:0.7em;color:var(--t3)">[3 agents]</span></h4>
+          <p>Extracts requirements, deadlines, budgets & evaluation criteria. Pulls metadata from Arabic & English docs. Scores relevancy against company capabilities.</p>
         </div>
       </div>
       <div class="ac ba fragment">
@@ -444,31 +435,40 @@
           <i data-lucide="compass" style="width:18px;height:18px;color:var(--amber)"></i>
         </div>
         <div>
-          <h4>Go/No-Go Advisor <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2]</span></h4>
-          <p>Strategic scoring on whether an RFP aligns with company capabilities, capacity, and win probability.</p>
+          <h4>Smart Go/No-Go Engine <span style="font-size:0.7em;color:var(--t3)">[1 agent]</span></h4>
+          <p>Analyzes win probability, strategic value & resource fit. Assesses competition level and risk. Delivers clear GO/NO-GO with reasoning.</p>
         </div>
       </div>
-      <div class="ac bk fragment">
-        <div class="ai" style="background:rgba(236,72,153,0.1)">
-          <i data-lucide="shield-check" style="width:18px;height:18px;color:var(--pink)"></i>
+      <div class="ac bc fragment">
+        <div class="ai" style="background:rgba(6,182,212,0.1)">
+          <i data-lucide="route" style="width:18px;height:18px;color:var(--cyan)"></i>
         </div>
         <div>
-          <h4>Compliance Checker <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2 + QWEN 3.5]</span></h4>
-          <p>Cross-references proposals against Arabic and English RFP requirements to flag gaps before submission.</p>
+          <h4>AI Question Generation & Routing <span style="font-size:0.7em;color:var(--t3)">[3 agents]</span></h4>
+          <p>Generates targeted questions covering every RFP requirement. Auto-categorizes and routes to the right business unit. AI drafts answers using RAG.</p>
+        </div>
+      </div>
+      <div class="ac be fragment">
+        <div class="ai" style="background:rgba(16,185,129,0.1)">
+          <i data-lucide="file-text" style="width:18px;height:18px;color:var(--emerald)"></i>
+        </div>
+        <div>
+          <h4>Automated Proposal Generation <span style="font-size:0.7em;color:var(--t3)">[4 agents]</span></h4>
+          <p>Plan → Map → Write → Fill pipeline. Synthesizes answers into professional narrative. Fills branded templates preserving AR/EN formatting.</p>
         </div>
       </div>
       <div class="ac bp fragment" style="grid-column:span 2">
         <div class="ai" style="background:rgba(139,92,246,0.1)">
-          <i data-lucide="sparkles" style="width:18px;height:18px;color:var(--purple)"></i>
+          <i data-lucide="shield-check" style="width:18px;height:18px;color:var(--purple)"></i>
         </div>
         <div>
-          <h4>Content Optimizer <span style="font-size:0.7em;color:var(--t3)">[QWEN 3.5]</span></h4>
-          <p>Enhances Arabic proposal quality, tone, and cultural nuance — ensuring responses resonate with MENA evaluators.</p>
+          <h4>AI Quality Assurance <span style="font-size:0.7em;color:var(--t3)">[2 agents: Document Reviewer + Compliance Checker]</span></h4>
+          <p>Reviews for wrong-section content, broken text & duplicates. Checks compliance against all RFP requirements. Optimizes for clarity and persuasiveness.</p>
         </div>
       </div>
     </div>
 
-    <aside class="notes">These aren't just prompts — they're integrated into the workflow with specific data pipelines.</aside>
+    <aside class="notes">13 specialized agents organized into 5 intelligent capabilities. Each capability has dedicated agents working together in pipelines — not standalone prompts.</aside>
   </section>
 
   <!-- ═══ 5. PRODUCT FEATURES ═══ -->
@@ -494,10 +494,10 @@
       </div>
       <div class="cd fragment">
         <div class="ci" style="background:rgba(139,92,246,0.1)">
-          <i data-lucide="git-branch" style="width:18px;height:18px;color:var(--purple)"></i>
+          <i data-lucide="file-check" style="width:18px;height:18px;color:var(--purple)"></i>
         </div>
-        <h4>Workflow Engine</h4>
-        <p>Customizable approval chains, multi-stage review, automated status transitions.</p>
+        <h4>Proposal Analyzer</h4>
+        <p>AI-powered analysis of past proposals — scoring, gap detection, and improvement recommendations.</p>
       </div>
       <div class="cd fragment">
         <div class="ci" style="background:rgba(16,185,129,0.1)">
@@ -542,7 +542,7 @@
       </div>
       <div class="ab" style="border-color:rgba(6,182,212,0.2)">
         <h4 class="tc">AI Services</h4>
-        <p>GPT-5.2 + QWEN 3.5<br>Dual-LLM / 5 Agents</p>
+        <p>GPT-5.2 + QWEN 3.5<br>Dual-LLM / 13 Agents</p>
       </div>
     </div>
 
@@ -635,7 +635,7 @@
       <tbody>
         <tr class="fragment">
           <td style="color:var(--t1);font-weight:600">AI Engine</td>
-          <td class="te">GPT-5.2 + QWEN 3.5 dual-LLM</td>
+          <td class="te">Dual-LLM / 13 agents in 5 capabilities</td>
           <td style="color:var(--t3)">Basic keyword matching</td>
           <td style="color:var(--t3)">Single model, generic</td>
         </tr>
@@ -683,7 +683,7 @@
         <div class="feats">
           <p>Up to 10 users</p>
           <p>50 RFPs / month</p>
-          <p>3 AI agents</p>
+          <p>5 AI agents</p>
           <p>Email support</p>
         </div>
       </div>
@@ -694,7 +694,7 @@
         <div class="feats">
           <p>Up to 50 users</p>
           <p>Unlimited RFPs</p>
-          <p>All 5 AI agents</p>
+          <p>All 13 AI agents</p>
           <p>CRM + Outlook integration</p>
           <p>Priority support</p>
         </div>
@@ -754,7 +754,7 @@
     </div>
 
     <div class="co fragment" style="margin-top:16px">
-      <p>The product is <strong style="color:var(--t1)">already built</strong> — 520+ files with CI/CD. We're raising to accelerate GTM.</p>
+      <p>The product is <strong style="color:var(--t1)">already built</strong> — 515+ files, 13 AI agents, 265+ endpoints. We're raising to accelerate GTM.</p>
     </div>
 
     <aside class="notes">Product is built. This isn't a slide deck with a promise. Raising to accelerate go-to-market.</aside>
@@ -769,19 +769,19 @@
 
     <div class="sg sg4" style="margin-top:12px">
       <div class="sb fragment">
-        <div class="sn tb">520+</div>
+        <div class="sn tb">515+</div>
         <div class="slb">Production Files</div>
       </div>
       <div class="sb fragment">
-        <div class="sn tc">29</div>
+        <div class="sn tc">30</div>
         <div class="slb">Backend Services</div>
       </div>
       <div class="sb fragment">
-        <div class="sn tp">20+</div>
+        <div class="sn tp">265+</div>
         <div class="slb">API Endpoints</div>
       </div>
       <div class="sb fragment">
-        <div class="sn te">13</div>
+        <div class="sn te">40</div>
         <div class="slb">DB Tables</div>
       </div>
     </div>
@@ -805,7 +805,7 @@
       </div>
     </div>
 
-    <aside class="notes">These are real metrics — 29 backend services, 13 DB tables, 520+ files. This is a real production application.</aside>
+    <aside class="notes">These are real metrics — 30 backend services, 40 DB tables, 265+ API endpoints, 515+ files. This is a real production application.</aside>
   </section>
 
   <!-- ═══ 12. THE ASK ═══ -->
