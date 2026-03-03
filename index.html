@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFP Management System — Investor Pitch</title>
+
+  <!-- reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ── Global Theme ── */
+    :root {
+      --bg: #06060e;
+      --card: rgba(255,255,255,0.03);
+      --card-h: rgba(255,255,255,0.06);
+      --blue: #3b82f6;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --pink: #ec4899;
+      --t1: #f1f5f9;
+      --t2: #94a3b8;
+      --t3: #64748b;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    .reveal-viewport { background: var(--bg) !important; }
+
+    .reveal {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--t1);
+    }
+
+    /* ── Force all slide content to stay inside the canvas ── */
+    .reveal .slides section {
+      text-align: left;
+      padding: 10px 30px;
+      box-sizing: border-box;
+      height: 100%;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── Typography — small enough to never overflow ── */
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .reveal h1 { font-size: 2.2em; font-weight: 900; }
+    .reveal h2 { font-size: 1.6em; margin-bottom: 2px; }
+    .reveal h3 { font-size: 0.85em; color: var(--t2); font-weight: 400; margin-top: 4px; }
+    .reveal h4 { font-size: 0.62em; }
+
+    .reveal p, .reveal li {
+      font-size: 0.58em;
+      line-height: 1.5;
+      color: var(--t2);
+      margin: 0;
+    }
+
+    .reveal ul { list-style: none; padding: 0; margin: 0; }
+    .reveal ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 6px;
+    }
+    .reveal ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    /* ── Gradients ── */
+    .gt { background: linear-gradient(135deg, var(--blue), var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gw { background: linear-gradient(135deg, var(--amber), var(--pink), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── Section Label ── */
+    .sl {
+      display: inline-block;
+      font-size: 0.42em; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--cyan);
+      border: 1px solid rgba(6,182,212,0.3);
+      padding: 2px 10px; border-radius: 14px;
+      margin-bottom: 6px;
+      background: rgba(6,182,212,0.05);
+    }
+
+    /* ── Card Grid ── */
+    .cg { display: grid; gap: 8px; margin-top: 10px; }
+    .c2 { grid-template-columns: 1fr 1fr; }
+    .c3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .cd {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .cd h4 {
+      font-weight: 600; color: var(--t1);
+      margin: 0 0 3px 0;
+    }
+
+    .cd p {
+      font-size: 0.48em !important;
+      color: var(--t3); margin: 0;
+      line-height: 1.4;
+    }
+
+    .cd .ci {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 6px;
+    }
+
+    /* ── Stat Grid ── */
+    .sg { display: grid; gap: 8px; margin-top: 10px; }
+    .sg4 { grid-template-columns: repeat(4,1fr); }
+    .sg3 { grid-template-columns: repeat(3,1fr); }
+    .sg2 { grid-template-columns: repeat(2,1fr); }
+
+    .sb {
+      text-align: center; padding: 10px 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .sn { font-size: 1.5em; font-weight: 900; line-height: 1; }
+    .slb { font-size: 0.42em; color: var(--t3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    /* ── Flow Steps ── */
+    .fs {
+      display: flex; align-items: center; gap: 4px;
+      margin-top: 12px; flex-wrap: wrap; justify-content: center;
+    }
+    .fp {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 12px; text-align: center;
+    }
+    .fp .fn { font-size: 0.38em; color: var(--cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .fp .ft { font-size: 0.48em; color: var(--t1); font-weight: 600; margin-top: 1px; }
+    .fa { color: var(--t3); font-size: 0.8em; }
+
+    /* ── Agent Cards ── */
+    .ac {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 12px;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .ai {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ac h4 { font-size: 0.58em; margin: 0 0 2px; color: var(--t1); }
+    .ac p { font-size: 0.42em !important; color: var(--t3); margin: 0; line-height: 1.35; }
+
+    /* ── Accent Borders ── */
+    .bb { border-left: 2px solid var(--blue) !important; }
+    .bc { border-left: 2px solid var(--cyan) !important; }
+    .bp { border-left: 2px solid var(--purple) !important; }
+    .be { border-left: 2px solid var(--emerald) !important; }
+    .ba { border-left: 2px solid var(--amber) !important; }
+    .bk { border-left: 2px solid var(--pink) !important; }
+
+    .tb { color: var(--blue); } .tc { color: var(--cyan); } .tp { color: var(--purple); }
+    .te { color: var(--emerald); } .ta { color: var(--amber); } .tk { color: var(--pink); }
+
+    /* ── Two-col ── */
+    .tw { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+    /* ── Callout ── */
+    .co {
+      background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05));
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 10px; padding: 10px 16px; margin-top: 10px;
+      text-align: center;
+    }
+    .co p { font-size: 0.58em !important; color: var(--t1); font-weight: 500; font-style: italic; }
+
+    /* ── Architecture ── */
+    .ar {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px; margin-top: 10px;
+    }
+    .ab {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 10px; text-align: center;
+    }
+    .ab h4 { font-size: 0.58em; margin: 0 0 3px; }
+    .ab p { font-size: 0.42em !important; margin: 0; line-height: 1.4; }
+    .ac-conn { text-align: center; color: var(--t3); font-size: 1em; padding: 2px 0; }
+
+    /* ── Tech Pills ── */
+    .tp-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+    .pill {
+      display: inline-block; background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 3px 10px; font-size: 0.42em; color: var(--t2); font-weight: 500;
+    }
+
+    /* ── Market Table ── */
+    .mt { width: 100%; margin-top: 10px; border-collapse: separate; border-spacing: 0 5px; }
+    .mt th {
+      font-size: 0.42em; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--t3); text-align: left; padding: 0 8px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mt td {
+      font-size: 0.48em; padding: 8px; background: var(--card); color: var(--t2);
+    }
+    .mt tr td:first-child { border-radius: 8px 0 0 8px; }
+    .mt tr td:last-child { border-radius: 0 8px 8px 0; }
+
+    /* ── Timeline ── */
+    .tl { display: flex; gap: 0; margin-top: 14px; position: relative; }
+    .tl::before {
+      content: ''; position: absolute; top: 16px; left: 0; right: 0;
+      height: 2px; background: rgba(255,255,255,0.06);
+    }
+    .ti { flex: 1; text-align: center; position: relative; padding: 0 6px; }
+    .td { width: 10px; height: 10px; border-radius: 50%; margin: 10px auto 8px; position: relative; z-index: 1; }
+    .ti h4 { font-size: 0.55em; margin: 0 0 3px; }
+    .ti p { font-size: 0.4em !important; line-height: 1.4; }
+
+    /* ── CTA ── */
+    .cta-btns { display: flex; gap: 12px; justify-content: center; margin-top: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 10px;
+      font-size: 0.58em; font-weight: 600; text-decoration: none;
+    }
+    .btn-p { background: linear-gradient(135deg, var(--blue), var(--purple)); color: #fff; }
+    .btn-s { background: var(--card); border: 1px solid rgba(255,255,255,0.1); color: var(--t1); }
+
+    /* ── Title slide center ── */
+    .title-slide { text-align: center !important; }
+    .title-slide h1 { font-size: 2.6em; margin-bottom: 4px; }
+    .tagline { font-size: 0.7em; color: var(--t2); font-weight: 400; margin-bottom: 12px; }
+    .title-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15));
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 20px; padding: 4px 16px;
+      font-size: 0.46em; font-weight: 500; color: var(--blue); letter-spacing: 0.04em;
+    }
+
+    /* ── CTA slide center ── */
+    .cta-slide { text-align: center !important; }
+    .cta-slide h2 { font-size: 1.8em; }
+
+    /* ── Decorative orbs ── */
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(120px);
+      pointer-events: none; z-index: -1;
+    }
+    .orb-b { background: rgba(59,130,246,0.07); width: 400px; height: 400px; top: -180px; right: -120px; }
+    .orb-p { background: rgba(139,92,246,0.05); width: 350px; height: 350px; bottom: -140px; left: -80px; }
+
+    /* ── Pricing ── */
+    .price-card { text-align: center; }
+    .price-card h4 { font-size: 0.48em; color: var(--t3); margin: 0; }
+    .price-val { font-size: 1.4em; font-weight: 900; margin: 4px 0; }
+    .price-card .per { font-size: 0.4em; color: var(--t3); }
+    .price-card .feats { text-align: left; margin-top: 8px; }
+    .price-card .feats p { font-size: 0.4em !important; margin-bottom: 3px; color: var(--t3); }
+
+    /* ── Slide number ── */
+    .reveal .slide-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--t3);
+    }
+
+    /* ── Highlighted pricing card ── */
+    .price-hl {
+      border: 1px solid rgba(6,182,212,0.3) !important;
+      box-shadow: 0 0 30px rgba(6,182,212,0.08);
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+  <!-- ═══ 1. TITLE ═══ -->
+  <section class="title-slide">
+    <div class="orb orb-b"></div>
+    <div class="orb orb-p"></div>
+
+    <div class="title-badge">Arabic-First AI Enterprise Software</div>
+
+    <h1 style="margin-top:14px"><span class="gt">RFP Management</span><br>System</h1>
+
+    <p class="tagline">The first Arabic-first RFP platform — powered by GPT-5.2 and QWEN 3.5<br>to analyze, generate, and optimize proposals across the MENA region.</p>
+
+    <div class="sg" style="max-width:680px; margin:0 auto; grid-template-columns:repeat(4,1fr)">
+      <div class="sb">
+        <div class="sn gt">5</div>
+        <div class="slb">AI Agents</div>
+      </div>
+      <div class="sb">
+        <div class="sn gt">520+</div>
+        <div class="slb">Source Files</div>
+      </div>
+      <div class="sb">
+        <div class="sn gw">عربي</div>
+        <div class="slb">Arabic-First</div>
+      </div>
+      <div class="sb">
+        <div class="sn gt">2 LLMs</div>
+        <div class="slb">GPT-5.2 + QWEN 3.5</div>
+      </div>
+    </div>
+
+    <aside class="notes">Open with scale — 5 autonomous AI agents, 520+ production files, bilingual enterprise platform. This is not a prototype.</aside>
+  </section>
+
+  <!-- ═══ 2. PROBLEM ═══ -->
+  <section>
+    <div class="orb orb-p"></div>
+    <span class="sl">The Problem</span>
+    <h2>RFP Response Is <span class="gw">Broken</span></h2>
+    <h3>MENA enterprises lose millions from slow, manual, English-only proposal processes.</h3>
+
+    <div class="cg c2" style="margin-top:12px">
+      <div class="cd bk fragment">
+        <h4>Manual Document Analysis</h4>
+        <p>Teams spend 20–40 hours reading and extracting requirements from complex RFP documents before even starting.</p>
+      </div>
+      <div class="cd ba fragment">
+        <h4>Fragmented Collaboration</h4>
+        <p>Questions assigned via email chains and spreadsheets. SMEs lose context, deadlines slip, responses lack consistency.</p>
+      </div>
+      <div class="cd bk fragment">
+        <h4>No Arabic-Native AI Tools</h4>
+        <p>Existing RFP tools are built for English markets. Arabic proposals require manual translation, losing nuance and cultural context.</p>
+      </div>
+      <div class="cd ba fragment">
+        <h4>Compliance Gaps</h4>
+        <p>Missing requirements discovered last minute — non-compliant submissions and disqualified bids worth millions.</p>
+      </div>
+    </div>
+
+    <div class="co fragment">
+      <p>Average enterprise spends <strong class="ta">$2,500–$35,000</strong> per RFP response — with a win rate under <strong class="tk">5%</strong>.</p>
+    </div>
+
+    <aside class="notes">Hit emotional pain points. Every enterprise BD team knows this. Cost figures from APMP industry benchmarks.</aside>
+  </section>
+
+  <!-- ═══ 3. SOLUTION ═══ -->
+  <section>
+    <div class="orb orb-b"></div>
+    <span class="sl">The Solution</span>
+    <h2>Arabic-First AI That <span class="gt">Wins Proposals</span></h2>
+    <h3>Dual-LLM engine: GPT-5.2 for reasoning + QWEN 3.5 for native Arabic understanding.</h3>
+
+    <div class="fs fragment">
+      <div class="fp"><div class="fn">Step 1</div><div class="ft">Upload RFP</div></div>
+      <div class="fa">→</div>
+      <div class="fp"><div class="fn">Step 2</div><div class="ft">AI Analysis</div></div>
+      <div class="fa">→</div>
+      <div class="fp"><div class="fn">Step 3</div><div class="ft">Auto-Generate Qs</div></div>
+      <div class="fa">→</div>
+      <div class="fp"><div class="fn">Step 4</div><div class="ft">Smart Assign</div></div>
+      <div class="fa">→</div>
+      <div class="fp"><div class="fn">Step 5</div><div class="ft">RAG Answers</div></div>
+      <div class="fa">→</div>
+      <div class="fp"><div class="fn">Step 6</div><div class="ft">Proposal Gen</div></div>
+    </div>
+
+    <div class="tw" style="margin-top:14px">
+      <div>
+        <ul>
+          <li class="fragment"><strong style="color:var(--t1)">Instant RFP parsing</strong> — PDF, DOCX, TXT analyzed in seconds</li>
+          <li class="fragment"><strong style="color:var(--t1)">Knowledge-powered answers</strong> — RAG on company docs to draft responses</li>
+          <li class="fragment"><strong style="color:var(--t1)">Real-time collaboration</strong> — WebSocket live editing + notifications</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li class="fragment"><strong style="color:var(--t1)">Go/No-Go intelligence</strong> — AI recommends which RFPs to pursue</li>
+          <li class="fragment"><strong style="color:var(--t1)">Compliance checking</strong> — Never miss a requirement again</li>
+          <li class="fragment"><strong style="color:var(--t1)">Arabic-first, not translated</strong> — QWEN 3.5 thinks in Arabic natively</li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="notes">Walkthrough the 6-step pipeline. Each step that used to take hours/days is now handled by AI in minutes.</aside>
+  </section>
+
+  <!-- ═══ 4. AI AGENTS ═══ -->
+  <section>
+    <div class="orb orb-p"></div>
+    <span class="sl">AI Agents</span>
+    <h2>Five <span class="gt">AI Agents</span>, Two LLM Engines</h2>
+    <h3>GPT-5.2 powers reasoning & generation. QWEN 3.5 delivers native Arabic language understanding.</h3>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px">
+      <div class="ac bb fragment">
+        <div class="ai" style="background:rgba(59,130,246,0.1)">
+          <i data-lucide="scan-search" style="width:18px;height:18px;color:var(--blue)"></i>
+        </div>
+        <div>
+          <h4>RFP Analyzer Agent <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2 + QWEN 3.5]</span></h4>
+          <p>Extracts requirements, deadlines, and criteria from Arabic or English RFPs with native language comprehension.</p>
+        </div>
+      </div>
+      <div class="ac be fragment">
+        <div class="ai" style="background:rgba(16,185,129,0.1)">
+          <i data-lucide="file-text" style="width:18px;height:18px;color:var(--emerald)"></i>
+        </div>
+        <div>
+          <h4>Proposal Generator Agent <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2]</span></h4>
+          <p>Creates professional proposals by aggregating team inputs with company knowledge base context.</p>
+        </div>
+      </div>
+      <div class="ac ba fragment">
+        <div class="ai" style="background:rgba(245,158,11,0.1)">
+          <i data-lucide="compass" style="width:18px;height:18px;color:var(--amber)"></i>
+        </div>
+        <div>
+          <h4>Go/No-Go Advisor <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2]</span></h4>
+          <p>Strategic scoring on whether an RFP aligns with company capabilities, capacity, and win probability.</p>
+        </div>
+      </div>
+      <div class="ac bk fragment">
+        <div class="ai" style="background:rgba(236,72,153,0.1)">
+          <i data-lucide="shield-check" style="width:18px;height:18px;color:var(--pink)"></i>
+        </div>
+        <div>
+          <h4>Compliance Checker <span style="font-size:0.7em;color:var(--t3)">[GPT-5.2 + QWEN 3.5]</span></h4>
+          <p>Cross-references proposals against Arabic and English RFP requirements to flag gaps before submission.</p>
+        </div>
+      </div>
+      <div class="ac bp fragment" style="grid-column:span 2">
+        <div class="ai" style="background:rgba(139,92,246,0.1)">
+          <i data-lucide="sparkles" style="width:18px;height:18px;color:var(--purple)"></i>
+        </div>
+        <div>
+          <h4>Content Optimizer <span style="font-size:0.7em;color:var(--t3)">[QWEN 3.5]</span></h4>
+          <p>Enhances Arabic proposal quality, tone, and cultural nuance — ensuring responses resonate with MENA evaluators.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="notes">These aren't just prompts — they're integrated into the workflow with specific data pipelines.</aside>
+  </section>
+
+  <!-- ═══ 5. PRODUCT FEATURES ═══ -->
+  <section>
+    <div class="orb orb-b"></div>
+    <span class="sl">Product</span>
+    <h2>Enterprise-Ready <span class="gt">Feature Set</span></h2>
+
+    <div class="cg c3" style="margin-top:12px">
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(59,130,246,0.1)">
+          <i data-lucide="brain" style="width:18px;height:18px;color:var(--blue)"></i>
+        </div>
+        <h4>Knowledge Wizard</h4>
+        <p>Upload docs, scrape websites, build a vector knowledge base for RAG-powered answers.</p>
+      </div>
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(6,182,212,0.1)">
+          <i data-lucide="users" style="width:18px;height:18px;color:var(--cyan)"></i>
+        </div>
+        <h4>Team Collaboration</h4>
+        <p>Assign questions to SMEs, track progress real-time, automated notifications and deadlines.</p>
+      </div>
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(139,92,246,0.1)">
+          <i data-lucide="git-branch" style="width:18px;height:18px;color:var(--purple)"></i>
+        </div>
+        <h4>Workflow Engine</h4>
+        <p>Customizable approval chains, multi-stage review, automated status transitions.</p>
+      </div>
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(16,185,129,0.1)">
+          <i data-lucide="mail" style="width:18px;height:18px;color:var(--emerald)"></i>
+        </div>
+        <h4>Outlook Integration</h4>
+        <p>Auto-ingest RFPs from email via Microsoft Graph API for seamless inbox monitoring.</p>
+      </div>
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(245,158,11,0.1)">
+          <i data-lucide="database" style="width:18px;height:18px;color:var(--amber)"></i>
+        </div>
+        <h4>Zoho CRM Sync</h4>
+        <p>Bi-directional CRM integration — pull opportunities, push statuses, unified pipeline.</p>
+      </div>
+      <div class="cd fragment">
+        <div class="ci" style="background:rgba(236,72,153,0.1)">
+          <i data-lucide="shield" style="width:18px;height:18px;color:var(--pink)"></i>
+        </div>
+        <h4>Multi-Tenant & RBAC</h4>
+        <p>Full multi-tenancy with role-based access, business unit isolation, audit logging.</p>
+      </div>
+    </div>
+
+    <aside class="notes">Every feature is implemented in the 520-file codebase with tests and CI/CD.</aside>
+  </section>
+
+  <!-- ═══ 6. ARCHITECTURE ═══ -->
+  <section>
+    <div class="orb orb-b"></div>
+    <span class="sl">Architecture</span>
+    <h2>Production-Grade <span class="gt">Stack</span></h2>
+
+    <div class="ar">
+      <div class="ab" style="border-color:rgba(59,130,246,0.2)">
+        <h4 class="tb">Frontend</h4>
+        <p>React 18 + Tailwind CSS<br>shadcn/ui + RTL-first i18n</p>
+      </div>
+      <div class="ab" style="border-color:rgba(139,92,246,0.2)">
+        <h4 class="tp">Backend API</h4>
+        <p>FastAPI + SQLAlchemy<br>Celery + WebSockets</p>
+      </div>
+      <div class="ab" style="border-color:rgba(6,182,212,0.2)">
+        <h4 class="tc">AI Services</h4>
+        <p>GPT-5.2 + QWEN 3.5<br>Dual-LLM / 5 Agents</p>
+      </div>
+    </div>
+
+    <div class="ac-conn">↕</div>
+
+    <div class="ar">
+      <div class="ab" style="border-color:rgba(16,185,129,0.2)">
+        <h4 class="te">Vector DB</h4>
+        <p>ChromaDB<br>RAG Knowledge Store</p>
+      </div>
+      <div class="ab" style="border-color:rgba(245,158,11,0.2)">
+        <h4 class="ta">PostgreSQL + Redis</h4>
+        <p>Primary DB + Cache<br>Session & Queue Store</p>
+      </div>
+      <div class="ab" style="border-color:rgba(236,72,153,0.2)">
+        <h4 class="tk">Integrations</h4>
+        <p>Zoho CRM + Outlook<br>Microsoft Graph API</p>
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <h4 style="font-size:0.52em; margin-bottom:4px; color:var(--t3)">Infrastructure</h4>
+      <div class="tp-row">
+        <span class="pill">GPT-5.2</span>
+        <span class="pill">QWEN 3.5</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Nginx</span>
+        <span class="pill">GitHub Actions CI/CD</span>
+        <span class="pill">Alembic Migrations</span>
+        <span class="pill">Circuit Breaker</span>
+        <span class="pill">Prometheus Metrics</span>
+      </div>
+    </div>
+
+    <aside class="notes">Emphasize production-readiness: circuit breaker, error sanitization, Prometheus metrics, CI/CD pipeline.</aside>
+  </section>
+
+  <!-- ═══ 7. MARKET ═══ -->
+  <section>
+    <div class="orb orb-p"></div>
+    <span class="sl">Market</span>
+    <h2>The <span class="gw">Market Opportunity</span></h2>
+
+    <div class="tw" style="margin-top:12px">
+      <div>
+        <div class="sb" style="margin-bottom:8px">
+          <div class="sn gw" style="font-size:2em">$7.1B</div>
+          <div class="slb">Global Proposal Management Market by 2030</div>
+        </div>
+        <div class="sg sg2">
+          <div class="sb">
+            <div class="sn ta">14.2%</div>
+            <div class="slb">CAGR Growth</div>
+          </div>
+          <div class="sb">
+            <div class="sn tk">72%</div>
+            <div class="slb">Firms Plan AI Adoption</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:0.6em; margin-bottom:8px; color:var(--t2)">Why Now</h4>
+        <ul>
+          <li class="fragment"><strong style="color:var(--t1)">Dual-LLM maturity</strong> — GPT-5.2 + QWEN 3.5 make Arabic document analysis viable at enterprise quality</li>
+          <li class="fragment"><strong style="color:var(--t1)">RAG revolution</strong> — Vector databases enable Arabic company-specific knowledge retrieval at scale</li>
+          <li class="fragment"><strong style="color:var(--t1)">MENA digital push</strong> — Saudi Vision 2030 and UAE programs driving Arabic-first B2B SaaS adoption</li>
+          <li class="fragment"><strong style="color:var(--t1)">No Arabic-native competitor</strong> — Every existing RFP tool is English-first with bolted-on translation</li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="notes">$7.1B market for proposal management globally. MENA is high-growth with large government RFP spending.</aside>
+  </section>
+
+  <!-- ═══ 8. COMPETITION ═══ -->
+  <section>
+    <div class="orb orb-b"></div>
+    <span class="sl">Competition</span>
+    <h2>Our <span class="gt">Competitive Edge</span></h2>
+
+    <table class="mt">
+      <thead>
+        <tr>
+          <th style="width:22%">Capability</th>
+          <th style="width:26%">RFP Management System</th>
+          <th style="width:26%">Legacy (Loopio, RFPIO)</th>
+          <th style="width:26%">Generic AI (ChatGPT)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fragment">
+          <td style="color:var(--t1);font-weight:600">AI Engine</td>
+          <td class="te">GPT-5.2 + QWEN 3.5 dual-LLM</td>
+          <td style="color:var(--t3)">Basic keyword matching</td>
+          <td style="color:var(--t3)">Single model, generic</td>
+        </tr>
+        <tr class="fragment">
+          <td style="color:var(--t1);font-weight:600">Arabic Understanding</td>
+          <td class="te">QWEN 3.5 native Arabic NLU</td>
+          <td style="color:var(--t3)">English only</td>
+          <td style="color:var(--t3)">Translated, loses nuance</td>
+        </tr>
+        <tr class="fragment">
+          <td style="color:var(--t1);font-weight:600">Knowledge RAG</td>
+          <td class="te">ChromaDB + Arabic embeddings</td>
+          <td style="color:var(--t3)">Content library (manual)</td>
+          <td style="color:var(--t3)">No persistent memory</td>
+        </tr>
+        <tr class="fragment">
+          <td style="color:var(--t1);font-weight:600">CRM Integration</td>
+          <td class="te">Zoho + Outlook native</td>
+          <td style="color:var(--t3)">Salesforce only</td>
+          <td style="color:var(--t3)">None</td>
+        </tr>
+        <tr class="fragment">
+          <td style="color:var(--t1);font-weight:600">Compliance Check</td>
+          <td class="te">Automated AI audit (AR/EN)</td>
+          <td style="color:var(--t3)">Manual checklists</td>
+          <td style="color:var(--t3)">None</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <aside class="notes">Key differentiator: purpose-built AI agents + bilingual Arabic + MENA CRM integrations.</aside>
+  </section>
+
+  <!-- ═══ 9. BUSINESS MODEL ═══ -->
+  <section>
+    <div class="orb orb-p"></div>
+    <span class="sl">Business Model</span>
+    <h2>SaaS Revenue <span class="gt">Engine</span></h2>
+
+    <div class="cg c3" style="margin-top:12px">
+      <div class="cd price-card fragment">
+        <h4>STARTER</h4>
+        <div class="price-val tb">$499</div>
+        <div class="per">/ month per team</div>
+        <div class="feats">
+          <p>Up to 10 users</p>
+          <p>50 RFPs / month</p>
+          <p>3 AI agents</p>
+          <p>Email support</p>
+        </div>
+      </div>
+      <div class="cd price-card price-hl fragment">
+        <h4 style="color:var(--cyan)">PROFESSIONAL</h4>
+        <div class="price-val tc">$1,499</div>
+        <div class="per">/ month per team</div>
+        <div class="feats">
+          <p>Up to 50 users</p>
+          <p>Unlimited RFPs</p>
+          <p>All 5 AI agents</p>
+          <p>CRM + Outlook integration</p>
+          <p>Priority support</p>
+        </div>
+      </div>
+      <div class="cd price-card fragment">
+        <h4>ENTERPRISE</h4>
+        <div class="price-val tp">Custom</div>
+        <div class="per">annual contract</div>
+        <div class="feats">
+          <p>Unlimited users</p>
+          <p>Multi-tenant / white-label</p>
+          <p>On-premise deployment</p>
+          <p>Custom integrations</p>
+          <p>Dedicated success manager</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="co fragment">
+      <p>Target ACV: <strong class="tc">$18K–$50K</strong> per enterprise &nbsp;|&nbsp; Gross margin: <strong class="te">~80%</strong> (SaaS + AI compute)</p>
+    </div>
+
+    <aside class="notes">Sweet spot is Professional at $1,499/mo. Enterprise deals target $50K+ ACV for multi-tenant deployments.</aside>
+  </section>
+
+  <!-- ═══ 10. ROADMAP ═══ -->
+  <section>
+    <div class="orb orb-b"></div>
+    <span class="sl">Roadmap</span>
+    <h2>Growth <span class="gt">Trajectory</span></h2>
+
+    <div class="tl">
+      <div class="ti fragment">
+        <div style="font-size:0.4em; color:var(--emerald); font-weight:700">COMPLETED</div>
+        <div class="td" style="background:var(--emerald)"></div>
+        <h4>Q1 2026</h4>
+        <p>Core platform built<br>GPT-5.2 + QWEN 3.5 integrated<br>CRM + Outlook connected<br>Arabic-first UX shipped</p>
+      </div>
+      <div class="ti fragment">
+        <div style="font-size:0.4em; color:var(--blue); font-weight:700">CURRENT</div>
+        <div class="td" style="background:var(--blue)"></div>
+        <h4>Q2 2026</h4>
+        <p>Beta with 5 MENA pilots<br>Arabic RFP training data<br>SOC 2 compliance<br>QWEN 3.5 fine-tuning</p>
+      </div>
+      <div class="ti fragment">
+        <div style="font-size:0.4em; color:var(--purple); font-weight:700">NEXT</div>
+        <div class="td" style="background:var(--purple)"></div>
+        <h4>Q3 2026</h4>
+        <p>Public launch<br>Salesforce integration<br>Analytics dashboard<br>Mobile companion app</p>
+      </div>
+      <div class="ti fragment">
+        <div style="font-size:0.4em; color:var(--pink); font-weight:700">FUTURE</div>
+        <div class="td" style="background:var(--pink)"></div>
+        <h4>Q4 2026</h4>
+        <p>Series A target<br>Multi-region deployment<br>Template marketplace<br>Government vertical</p>
+      </div>
+    </div>
+
+    <div class="co fragment" style="margin-top:16px">
+      <p>The product is <strong style="color:var(--t1)">already built</strong> — 520+ files with CI/CD. We're raising to accelerate GTM.</p>
+    </div>
+
+    <aside class="notes">Product is built. This isn't a slide deck with a promise. Raising to accelerate go-to-market.</aside>
+  </section>
+
+  <!-- ═══ 11. TRACTION ═══ -->
+  <section>
+    <div class="orb orb-p"></div>
+    <span class="sl">Traction</span>
+    <h2>Built, Not <span class="gw">Pitched</span></h2>
+    <h3>What's already shipped and operational.</h3>
+
+    <div class="sg sg4" style="margin-top:12px">
+      <div class="sb fragment">
+        <div class="sn tb">520+</div>
+        <div class="slb">Production Files</div>
+      </div>
+      <div class="sb fragment">
+        <div class="sn tc">29</div>
+        <div class="slb">Backend Services</div>
+      </div>
+      <div class="sb fragment">
+        <div class="sn tp">20+</div>
+        <div class="slb">API Endpoints</div>
+      </div>
+      <div class="sb fragment">
+        <div class="sn te">13</div>
+        <div class="slb">DB Tables</div>
+      </div>
+    </div>
+
+    <div class="cg c2" style="margin-top:10px">
+      <div class="cd bb fragment">
+        <h4>Full CI/CD Pipeline</h4>
+        <p>GitHub Actions with automated testing, building, deployment. Docker-containerized for any cloud.</p>
+      </div>
+      <div class="cd be fragment">
+        <h4>Enterprise Security</h4>
+        <p>JWT auth, RBAC, audit logging, error sanitization, circuit breaker, profanity filtering.</p>
+      </div>
+      <div class="cd bc fragment">
+        <h4>Real-time Infrastructure</h4>
+        <p>WebSocket PubSub for live collaboration, Redis caching, Celery async, notification system.</p>
+      </div>
+      <div class="cd bp fragment">
+        <h4>Arabic-First UX</h4>
+        <p>RTL-native interface, Arabic-first content flow, QWEN 3.5 for Arabic NLU across all AI features.</p>
+      </div>
+    </div>
+
+    <aside class="notes">These are real metrics — 29 backend services, 13 DB tables, 520+ files. This is a real production application.</aside>
+  </section>
+
+  <!-- ═══ 12. THE ASK ═══ -->
+  <section class="cta-slide">
+    <div class="orb orb-b"></div>
+    <div class="orb orb-p"></div>
+
+    <span class="sl">The Ask</span>
+
+    <h2><span class="gt">The Arabic-First</span><br>RFP Revolution Starts Here</h2>
+
+    <p style="font-size:0.65em; color:var(--t2); max-width:580px; margin:8px auto 0; text-align:center">
+      Raising a <strong style="color:var(--t1)">seed round</strong> to own the Arabic RFP market — dual-LLM engine (GPT-5.2 + QWEN 3.5), 20 enterprise pilots, and MENA-wide expansion.
+    </p>
+
+    <div class="sg sg2" style="max-width:380px; margin:14px auto 0">
+      <div class="sb">
+        <div class="sn gt">$1.5M</div>
+        <div class="slb">Seed Round Target</div>
+      </div>
+      <div class="sb">
+        <div class="sn gt">18 mo</div>
+        <div class="slb">Runway</div>
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <h4 style="font-size:0.48em; color:var(--t3); margin-bottom:4px">Use of Funds</h4>
+      <div class="tp-row" style="justify-content:center">
+        <span class="pill">40% Engineering & AI</span>
+        <span class="pill">30% Sales & GTM</span>
+        <span class="pill">20% Operations</span>
+        <span class="pill">10% Infrastructure</span>
+      </div>
+    </div>
+
+    <div class="cta-btns">
+      <a href="https://github.com/siyaida/rfpforked" class="btn btn-p" target="_blank">View the Codebase →</a>
+      <a href="mailto:invest@siyada.tech" class="btn btn-s">Schedule a Demo</a>
+    </div>
+
+    <p style="font-size:0.48em; color:var(--t3); margin-top:14px; text-align:center">Thank you. &nbsp;Questions?</p>
+
+    <aside class="notes">Close with conviction. The product is built. The market is huge. We need fuel to go to market.</aside>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1100,
+    height: 700,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    center: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    plugins: [ RevealNotes ],
+    keyboard: {
+      70: () => {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+    }
+  });
+
+  Reveal.on('ready', () => lucide.createIcons());
+  Reveal.on('fragmentshown', () => lucide.createIcons());
+</script>
+
+</body>
+</html>
